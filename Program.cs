@@ -8,6 +8,22 @@ namespace ProgramFlow
 {
     class Program
     {
+        static int GetGuess(string guess)
+        {
+            try 
+            {
+                int num = Int32.Parse(guess);
+                return num;
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine($"ERROR!!!!! {e.Message}");
+                return 0;
+            }
+            
+        }
+
         static void Main(string[] args)
         {
             Random rnd = new Random();
@@ -19,11 +35,13 @@ namespace ProgramFlow
 
             int guess = new int();
 
+            Console.WriteLine($"initial guess = {guess}");
+
             Console.WriteLine("Guess a number between 0 and 50!");
 
             while (guess != answer)
             {
-                guess = Int32.Parse(Console.ReadLine());
+                guess = GetGuess(Console.ReadLine());
                 if (guess == answer)
                 {
                     Console.WriteLine($"That's right! The answer was {answer}");
